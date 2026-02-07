@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  }
+
+  body {
+    @apply min-h-screen w-screen overflow-x-hidden bg-black text-white m-0 p-0;
+    /* "Zero A4" Canvas */
+  }
+
+  /* Custom Scrollbar for "The Specialist" feel globally */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+@layer components {
+
+  /* Glassmorphism token */
+  .glass-panel {
+    @apply backdrop-blur-2xl bg-white/5 border border-white/10 shadow-xl;
+  }
+
+  /* Text Presets */
+  .text-hero {
+    @apply text-[12vw] leading-[0.85] tracking-tighter font-black;
+  }
+}
+
+@media print {
+  @page {
+    margin: 20mm;
+    size: A4;
+  }
+
+  body {
+    @apply bg-white text-black w-auto min-h-0 overflow-visible;
+  }
+
+  /* Hide UI elements */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reveal Print layout */
+  .print-only {
+    display: block !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
