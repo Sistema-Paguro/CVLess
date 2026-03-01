@@ -8,7 +8,7 @@ interface MultiSelectProps {
     value: string[];
     onChange: (value: string[]) => void;
     options: string[];
-    theme: 'architect' | 'specialist' | 'creator';
+    theme: 'executive' | 'specialist' | 'creator';
     placeholder?: string;
     max?: number;
     label?: string;
@@ -62,31 +62,31 @@ export const MultiSelect = ({ value, onChange, options, theme, placeholder = "Se
     };
 
     const getStyles = () => {
-        if (theme === 'architect') {
+        if (theme === 'executive') {
             return {
-                trigger: "bg-white border text-slate-800 font-serif border-slate-200 hover:border-slate-800",
-                menu: "bg-white border border-slate-100 shadow-xl",
-                item: "font-serif text-slate-600 hover:bg-slate-50 hover:text-slate-900",
-                activeItem: "bg-slate-50 text-slate-900 font-medium",
-                tag: "bg-slate-100 text-slate-700 border border-slate-200",
+                trigger: "bg-zinc-50 border text-slate-900 border-zinc-200 focus:border-[#c01c83] focus:ring-1 focus:ring-[#c01c83]/20 rounded-lg",
+                menu: "bg-white border border-zinc-200 shadow-xl rounded-xl",
+                item: "font-inter text-slate-600 hover:bg-zinc-50 hover:text-slate-900",
+                activeItem: "bg-zinc-100 text-slate-900 font-bold",
+                tag: "bg-slate-900 text-white font-bold tracking-wide rounded-md",
                 icon: "text-slate-400"
             };
         } else if (theme === 'specialist') {
             return {
-                trigger: "bg-white/5 border border-white/10 text-cyan-50 font-mono text-sm shadow-none hover:bg-white/10 rounded-sm",
-                menu: "bg-[#050505] border border-white/10 shadow-xl rounded-sm mt-1",
-                item: "font-sans text-cyan-200/70 hover:bg-cyan-900/30 hover:text-cyan-100 text-sm",
-                activeItem: "bg-cyan-900/50 text-cyan-100 border-l-2 border-cyan-500",
-                tag: "bg-cyan-900/40 border border-cyan-500/30 text-cyan-300 rounded-xs",
-                icon: "text-cyan-500/70"
+                trigger: "bg-black/40 border-b border-[#d64d9e]/30 text-cyan-50 font-mono text-sm shadow-none hover:border-[#c01c83] rounded-none transition-colors",
+                menu: "bg-[#050510] border border-[#d64d9e]/30 shadow-[0_4px_20px_-5px_rgba(192,28,131,0.5)] rounded-none mt-1",
+                item: "font-mono text-cyan-200/70 hover:bg-[#c01c83]/10 hover:text-[#d64d9e] text-sm",
+                activeItem: "bg-[#c01c83]/20 text-[#d64d9e] border-l-2 border-[#c01c83]",
+                tag: "bg-[#c01c83]/20 border border-[#c01c83] shadow-[0_0_10px_rgba(192,28,131,0.3)] text-white rounded-none",
+                icon: "text-[#d64d9e]"
             };
         } else {
             return {
-                trigger: "bg-white border-4 border-black text-black font-black uppercase tracking-wide shadow-[4px_4px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#FF00FF] transition-all",
-                menu: "bg-white border-4 border-black shadow-[8px_8px_0px_#00FFFF]",
-                item: "font-bold text-black uppercase hover:bg-yellow-300",
-                activeItem: "bg-yellow-300 text-black",
-                tag: "bg-black text-white font-bold",
+                trigger: "bg-white border-2 border-black text-black font-inter font-bold uppercase hover:shadow-[4px_4px_0px_#000000] focus:border-[#0079d3] transition-all rounded-none",
+                menu: "bg-white border-4 border-black shadow-[8px_8px_0px_#000] rounded-none",
+                item: "font-inter font-bold text-black uppercase hover:bg-gray-100",
+                activeItem: "bg-[#0079d3] text-white",
+                tag: "bg-black text-white font-black uppercase rounded-none border-2 border-transparent",
                 icon: "text-black"
             };
         }

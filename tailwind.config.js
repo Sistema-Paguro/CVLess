@@ -10,10 +10,17 @@ export default {
         architect: ['"Playfair Display"', 'serif'],
         specialist: ['"JetBrains Mono"', 'monospace'],
         creator: ['"Anton"', 'sans-serif'],
+        // Web-safe fonts for the CV A4 area to prevent PDF export bugs
+        cv: ['Arial', 'Helvetica', 'sans-serif'],
+        'cv-serif': ['Georgia', 'serif'],
       },
-      // Branding colors can be added here
       colors: {
-        // Example placeholders
+        brand: {
+          light: '#FFFFFF',
+          dark: '#1E293E',
+          primary: '#0360ab',
+          accent: '#c01c83',
+        }
       },
       animation: {
         'liquid': 'liquid 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards',

@@ -8,7 +8,7 @@ interface RoleSelectProps {
     value: string;
     onChange: (value: string) => void;
     options: string[];
-    theme: 'architect' | 'specialist' | 'creator';
+    theme: 'executive' | 'specialist' | 'creator';
     placeholder?: string;
 }
 
@@ -55,30 +55,30 @@ export const RoleSelect = ({ value, onChange, options, theme, placeholder = "Sel
     // THEME CONFIGURATION
     // -------------------------------------------------------------------------
     const styles = {
-        architect: {
-            trigger: "bg-white border text-slate-800 font-serif border-slate-200 hover:border-slate-800",
-            menu: "bg-white border border-slate-100 shadow-xl",
-            item: "font-serif text-slate-600 hover:bg-slate-50 hover:text-slate-900",
-            activeItem: "bg-slate-900 text-white hover:bg-slate-800",
+        executive: {
+            trigger: "bg-zinc-50 border text-slate-900 border-zinc-200 focus:border-[#c01c83] focus:ring-1 focus:ring-[#c01c83]/20 rounded-lg",
+            menu: "bg-white border border-zinc-200 shadow-xl rounded-xl overflow-hidden",
+            item: "font-inter text-slate-600 hover:bg-zinc-50 hover:text-slate-900",
+            activeItem: "bg-slate-900 text-white font-bold",
             icon: "text-slate-400"
         },
         specialist: {
-            trigger: "bg-white/5 border border-white/10 text-cyan-50 font-mono text-sm hover:bg-white/10 transition-colors rounded-sm",
-            menu: "bg-[#050505] border border-white/10 shadow-xl rounded-sm mt-1",
-            item: "font-sans text-cyan-200/70 hover:bg-cyan-900/30 hover:text-cyan-100 text-sm",
-            activeItem: "bg-cyan-900/50 text-cyan-100 border-l-2 border-cyan-500",
-            icon: "text-cyan-500/70"
+            trigger: "bg-black/40 border-b border-[#d64d9e]/30 text-cyan-50 font-mono text-sm hover:border-[#c01c83] transition-colors rounded-none outline-none",
+            menu: "bg-[#050510] border border-[#d64d9e]/30 shadow-[0_4px_20px_-5px_rgba(192,28,131,0.5)] rounded-none mt-1",
+            item: "font-mono text-cyan-200/70 hover:bg-[#c01c83]/10 hover:text-[#d64d9e] text-sm",
+            activeItem: "bg-[#c01c83]/20 text-[#d64d9e] border-l-2 border-[#c01c83]",
+            icon: "text-[#d64d9e]"
         },
         creator: {
-            trigger: "bg-white border-4 border-black text-black font-black uppercase tracking-wide shadow-[4px_4px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#FF00FF] transition-all",
-            menu: "bg-white border-4 border-black shadow-[8px_8px_0px_#00FFFF]",
-            item: "font-bold text-black uppercase hover:bg-yellow-300",
-            activeItem: "bg-black text-white hover:bg-black hover:text-white",
+            trigger: "bg-white border-2 border-black text-black font-inter font-bold hover:shadow-[4px_4px_0_#000] focus:border-[#0079d3] transition-all rounded-none",
+            menu: "bg-white border-4 border-black shadow-[8px_8px_0px_#000] rounded-none mt-2",
+            item: "font-inter font-bold text-black uppercase hover:bg-gray-100",
+            activeItem: "bg-[#0079d3] text-white",
             icon: "text-black"
         }
     };
 
-    const currentStyle = styles[theme];
+    const currentStyle = styles[theme] || styles.executive;
 
     return (
         <div className="relative w-full" ref={containerRef}>

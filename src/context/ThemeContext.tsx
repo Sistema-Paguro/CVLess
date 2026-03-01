@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-type Theme = 'architect' | 'specialist' | 'creator';
+type Theme = 'executive' | 'specialist' | 'creator';
 
 interface ThemeContextType {
     theme: Theme;
@@ -10,7 +10,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-    const [theme, setTheme] = useState<Theme>('architect');
+    const [theme, setTheme] = useState<Theme>('executive');
 
     return (
         <ThemeContext.Provider value={{ theme, setTheme }}>

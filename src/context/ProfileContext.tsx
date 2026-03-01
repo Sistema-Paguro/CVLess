@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from 'react';
+import type { IdentityInput } from '../services/ai';
 
 export interface Profile {
     brand_name: string; // Was fullName
@@ -31,7 +32,9 @@ export interface Profile {
 
 interface ProfileContextType {
     profile: Profile | null;
-    setProfile: (profile: Profile) => void;
+    setProfile: (profile: Profile | null) => void;
+    inputData: IdentityInput | null;
+    setInputData: (data: IdentityInput | null) => void;
     isGenerating: boolean;
     setIsGenerating: (is: boolean) => void;
 }
@@ -40,10 +43,11 @@ const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     const [profile, setProfile] = useState<Profile | null>(null);
+    const [inputData, setInputData] = useState<IdentityInput | null>(null);
     const [isGenerating, setIsGenerating] = useState(false);
 
     return (
-        <ProfileContext.Provider value={{ profile, setProfile, isGenerating, setIsGenerating }}>
+        <ProfileContext.Provider value={{ profile, setProfile, inputData, setInputData, isGenerating, setIsGenerating }}>
             {children}
         </ProfileContext.Provider>
     );

@@ -1,12 +1,50 @@
+import { useRef, useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useProfile } from '../context/ProfileContext';
 import { Wizard } from './Wizard';
+import { ResumePreview } from './ResumePreview';
+import { CreatorCV } from './CreatorCV';
+import { clsx } from 'clsx';
+import { RefreshCcw, Plus, Download, Image as ImageIcon, Loader2 } from 'lucide-react';
+import html2canvas from 'html2canvas';
 
 export const Home = () => {
     const { theme } = useTheme();
-    const { profile } = useProfile();
+    const { profile, setProfile, setInputData } = useProfile();
+    const printRef = useRef<HTMLDivElement | null>(null);
+    const [isDownloading, setIsDownloading] = useState(false);
+
+    const getThemeBackground = () => {
+        if (theme === 'specialist') return '#050505';
+        if (theme === 'executive') return '#f8fafc';
+        return '#f8d12f'; // default creator vibe
+    };
+
+    const handleDownloadPNG = async () => {
+        if (!printRef.current) return;
+        setIsDownloading(true);
+        try {
+            const canvas = await html2canvas(printRef.current, { scale: 4, useCORS: true, backgroundColor: getThemeBackground() });
+            const data = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = data;
+            link.download = `${profile?.brand_name?.replace(/\s+/g, '_') || 'profile'}_cvless.png`;
+            link.click();
+        } catch (error) {
+            console.error('Error generating image', error);
+        } finally {
+            setIsDownloading(false);
+        }
+    };
+
+    const handleDownloadPDF = () => {
+        // Native window.print() triggers the browser's PDF engine for 100% Vector & ATS-readable text.
+        // We rely on the @media print CSS rules already defined to clean up the UI during print.
+        window.print();
+    };
 
     if (!profile) {
+        // ...
         return (
             <div className="flex items-center justify-center min-h-screen w-full relative z-10">
                 <Wizard />
@@ -14,123 +52,112 @@ export const Home = () => {
         );
     }
 
-    // Cinematic Profile View
     return (
-        <div className="min-h-screen w-full p-[5vw] pt-24 pb-32 relative z-10">
-            {/* Header / Name */}
-            <h1 className="text-hero break-words leading-[0.8]">
-                {profile.brand_name}
-            </h1>
+        <div className={clsx(
+            "flex flex-col items-center justify-center min-h-screen pt-10 pb-32 w-full overflow-y-auto print:flex print:items-start print:justify-center print:p-0 print:m-0 print:overflow-hidden print:h-[297mm] print:w-[210mm]",
+            theme === 'creator' ? "bg-black/10" : "bg-black/90"
+        )}>
+            {theme === 'creator' ? (
+                <CreatorCV initialProfile={profile} targetRef={printRef} />
+            ) : (
+                <ResumePreview
+                    initialProfile={profile}
+                    theme={theme}
+                    targetRef={printRef}
+                    template={theme === 'executive' ? 'classic' : 'modern'}
+                />
+            )}
 
-            <div className="flex flex-wrap gap-6 mt-8 opacity-60 uppercase tracking-widest text-xs font-mono no-print">
-                <span>{profile.location}</span>
-                <span>•</span>
-                <span>{profile.contact.email}</span>
-                <span>•</span>
-                <span>{profile.contact.phone}</span>
-                {profile.contact.linkedin && (
-                    <>
-                        <span>•</span>
-                        <a href={profile.contact.linkedin} target="_blank" rel="noopener noreferrer" className="hover:underline">LinkedIn</a>
-                    </>
-                )}
-            </div>
+            {/* Print Only CSS to rigidly enforce a single A4 page limit and colors */}
+            <style>{`
+                @media print {
+                    @page { size: A4 portrait; margin: 0; }
+                    html, body {
+                        width: 210mm !important;
+                        height: 297mm !important;
+                        margin: 0 !important;
+                        padding: 0 !important;
+                        overflow: hidden !important;
+                    }
+                    * {
+                        -webkit-print-color-adjust: exact !important;
+                        print-color-adjust: exact !important;
+                    }
+                    .no-print { display: none !important; }
+                }
+            `}</style>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mt-12">
-                {/* Bio Column */}
-                <div className="lg:col-span-12 xl:col-span-7">
-                    {/* Hero Headline */}
-                    <h2 className="text-4xl md:text-6xl font-black mb-8 opacity-100 uppercase tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-current to-current/50">
-                        {profile.hero_headline}
-                    </h2>
-
-                    {/* Strategic Bio */}
-                    <p className="text-2xl md:text-4xl leading-relaxed font-serif opacity-90 indent-0 lg:indent-12 text-justify">
-                        {profile.strategic_bio}
-                    </p>
-
-                    {/* Work History */}
-                    <div className="mt-16 space-y-12">
-                        <h3 className="text-sm tracking-widest uppercase opacity-50 border-b border-current pb-4">Professional Trajectory</h3>
-                        {profile.work_history.map((job, i) => (
-                            <div key={i} className="group">
-                                <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
-                                    <h4 className="text-2xl font-bold uppercase">{job.role}</h4>
-                                    <div className="flex items-center gap-4 opacity-70">
-                                        <span className="font-mono">{job.company}</span>
-                                        <span>•</span>
-                                        <span className="font-mono text-sm">{job.period}</span>
-                                    </div>
-                                </div>
-                                <ul className="space-y-2 pl-4 border-l-2 border-white/20 group-hover:border-lime-400 transition-colors">
-                                    {job.achievements.map((ach, j) => (
-                                        <li key={j} className="text-lg opacity-80 leading-relaxed font-light">
-                                            {ach}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Sidebar / Details Column */}
-                <div className="lg:col-span-12 xl:col-span-5 space-y-16 mt-8 lg:mt-0 xl:pl-12">
-
-                    {/* Skills Matrix */}
-                    <div>
-                        <h3 className="text-xs tracking-widest uppercase opacity-50 mb-6 border-b border-current pb-2">Competency Matrix</h3>
-
-                        <div className="space-y-8">
-                            <div>
-                                <h4 className="text-sm font-bold uppercase mb-3 opacity-70">Core</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {profile.skills_matrix.core.map((s, i) => (
-                                        <span key={i} className="px-3 py-1 bg-current/10 rounded text-sm font-bold">{s}</span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="text-sm font-bold uppercase mb-3 opacity-70">Secondary</h4>
-                                <div className="flex flex-wrap gap-2 opacity-80">
-                                    {profile.skills_matrix.secondary.map((s, i) => (
-                                        <span key={i} className="px-3 py-1 border border-current/20 rounded-full text-xs">{s}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Tech Stack */}
-                    <div>
-                        <h3 className="text-xs tracking-widest uppercase opacity-50 mb-6 border-b border-current pb-2">Tech Stack</h3>
-                        <div className="flex flex-wrap gap-3">
-                            {profile.tech_stack.map((s, i) => (
-                                <span key={i} className="px-4 py-2 border border-current rounded-none font-mono text-sm uppercase hover:bg-white hover:text-black transition-colors">
-                                    {s}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Weakness Flip */}
-                    <div className="p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-none">
-                        <h3 className="text-xs tracking-widest uppercase opacity-50 mb-4">Strategic Transformation</h3>
-                        <div className="text-lg opacity-40 mb-2 line-through decoration-current decoration-2">{profile.weakness.original}</div>
-                        <div className="text-xl md:text-2xl font-bold italic leading-tight">{profile.weakness.flipped}</div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Footer / Contact / Download */}
-            <div className="mt-32 border-t border-white/20 pt-8 flex justify-between items-end no-print">
-                <div className="text-xs opacity-50 uppercase tracking-widest">
+            {/* Footer / Contact / Download (Outside of print area) */}
+            <div className="mt-8 mb-20 w-full max-w-[210mm] flex flex-col md:flex-row justify-between items-center gap-6 no-print relative z-50">
+                <div className="text-[10px] opacity-50 uppercase tracking-widest text-white text-center md:text-left">
                     Generated by CV CopyPaste Logic Core <br />
                     Theme: {theme}
                 </div>
-                <button className="px-8 py-4 bg-white text-black font-bold uppercase tracking-widest hover:scale-105 transition-transform">
-                    Download PDF [A4]
-                </button>
+
+                <div className="flex flex-wrap justify-center gap-3">
+                    {/* EDIT INFO BUTTON */}
+                    <button
+                        onClick={() => setProfile(null)} // Keep inputData, just reset view
+                        className={clsx(
+                            "px-5 py-2.5 uppercase tracking-widest text-[10px] sm:text-xs font-bold transition-all flex items-center justify-center gap-2",
+                            theme === 'executive' ? "bg-slate-200 hover:bg-slate-300 text-slate-600" :
+                                theme === 'specialist' ? "border border-cyan-500/30 text-cyan-400 hover:bg-cyan-500/10" :
+                                    "bg-white/10 text-white hover:bg-white/20 border border-transparent backdrop-blur-sm"
+                        )}
+                    >
+                        <RefreshCcw className="w-3.5 h-3.5" />
+                        <span>Edit Info</span>
+                    </button>
+
+                    {/* NEW PORTFOLIO BUTTON */}
+                    <button
+                        onClick={() => {
+                            if (window.confirm("Are you sure? This will clear all data.")) {
+                                setInputData(null);
+                                setProfile(null);
+                            }
+                        }}
+                        className={clsx(
+                            "px-5 py-2.5 uppercase tracking-widest text-[10px] sm:text-xs font-bold transition-all flex items-center justify-center gap-2",
+                            theme === 'executive' ? "border border-slate-300 hover:border-slate-900 text-slate-500 hover:text-slate-900" :
+                                theme === 'specialist' ? "hover:text-white text-slate-500" :
+                                    "bg-transparent text-white border border-white/30 hover:bg-white/10 backdrop-blur-sm"
+                        )}
+                    >
+                        <Plus className="w-3.5 h-3.5" />
+                        <span>New Portfolio</span>
+                    </button>
+
+                    {/* DOWNLOAD PNG */}
+                    <button
+                        onClick={handleDownloadPNG}
+                        disabled={isDownloading}
+                        className={clsx(
+                            "px-5 py-2.5 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-transform flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg",
+                            theme === 'executive' ? "bg-slate-200 text-slate-900 hover:bg-slate-300" :
+                                theme === 'specialist' ? "bg-indigo-950/50 text-indigo-400 border border-indigo-500/50 hover:bg-indigo-900/50" :
+                                    "bg-white text-black hover:bg-gray-200"
+                        )}
+                    >
+                        {isDownloading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ImageIcon className="w-3.5 h-3.5" />}
+                        <span>{isDownloading ? '...' : 'PNG'}</span>
+                    </button>
+
+                    {/* DOWNLOAD PDF */}
+                    <button
+                        onClick={handleDownloadPDF}
+                        disabled={isDownloading}
+                        className={clsx(
+                            "px-6 py-2.5 font-bold uppercase tracking-widest text-[10px] sm:text-xs transition-transform flex items-center justify-center gap-2 disabled:opacity-50 shadow-lg",
+                            theme === 'executive' ? "bg-slate-900 text-white hover:bg-black" :
+                                theme === 'specialist' ? "bg-cyan-500 text-black hover:bg-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)]" :
+                                    "bg-[#FF00FF] text-white hover:bg-[#E000E0]"
+                        )}
+                    >
+                        {isDownloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+                        <span>{isDownloading ? 'Gen...' : 'Download PDF'}</span>
+                    </button>
+                </div>
             </div>
         </div>
     );

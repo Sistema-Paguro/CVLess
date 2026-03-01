@@ -10,8 +10,7 @@
   }
 
   body {
-    @apply min-h-screen w-screen overflow-x-hidden bg-black text-white m-0 p-0;
-    /* "Zero A4" Canvas */
+    @apply min-h-screen w-screen overflow-x-hidden m-0 p-0 text-brand-dark bg-brand-light;
   }
 
   /* Custom Scrollbar for "The Specialist" feel globally */
@@ -48,25 +47,18 @@
 
 @media print {
   @page {
-    margin: 20mm;
-    size: A4;
+    margin: 0;
+    size: A4 portrait;
   }
 
   body {
-    @apply bg-white text-black w-auto min-h-0 overflow-visible;
+    @apply bg-white text-black w-screen h-screen overflow-hidden m-0 p-0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  /* Hide UI elements */
+  /* Hide everything except the print container */
   .no-print {
     display: none !important;
   }
-
-  /* Reveal Print layout */
-  .print-only {
-    display: block !important;
-  }
-}
-
-.print-only {
-  display: none;
 }
