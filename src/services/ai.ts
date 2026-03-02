@@ -2,7 +2,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Placeholder for API Key - In production, use import.meta.env.VITE_GEMINI_API_KEY
 // For now, we simulate the "Elite" transformation to demonstrate the "Motor IA"
-const API_KEY = "AIzaSyAxY6W3a09Qj36CwKu_J6ka7E6rBZLQ4aw";
+const API_KEY = "AIzaSyDq7nQhz-t7gNjhxRjO1UhdPOUvuhwZWpo";
 
 export interface IdentityInput {
     fullName: string;
