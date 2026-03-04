@@ -116,13 +116,13 @@ export const PhoneInput = ({ value, onChange, theme, language, placeholder, requ
             };
         } else if (theme === 'specialist') {
             return {
-                container: "w-full flex items-center bg-black/40 border-b border-[#d64d9e]/30 focus-within:border-[#c01c83] focus-within:shadow-[0_4px_15px_-3px_rgba(192,28,131,0.3)] transition-all duration-300",
-                trigger: "bg-transparent text-cyan-50 hover:bg-white/10 pr-2 pl-3 py-3 border-r border-[#d64d9e]/30 font-mono text-sm flex items-center gap-2 shrink-0 max-w-[100px]",
-                dropdown: "bg-[#050505] border border-[#d64d9e]/30 shadow-[0_4px_15px_-3px_rgba(192,28,131,0.3)] text-cyan-50 rounded-none mt-1",
-                search: "bg-black/60 border-b border-[#d64d9e]/30 placeholder:text-white/20 text-cyan-50 font-mono text-sm",
-                item: "hover:bg-[#c01c83]/20 hover:text-white text-sm py-2 border-b border-[#d64d9e]/10 last:border-0 font-mono",
-                itemActive: "bg-[#c01c83]/30 text-white",
-                input: "bg-transparent text-cyan-50 placeholder:text-gray-600 outline-none w-full py-3 px-3 font-mono text-sm h-full"
+                container: "w-full flex items-center bg-white border border-gray-200 focus-within:border-[#0360ab] focus-within:ring-1 focus-within:ring-[#0360ab]/20 rounded-none transition-colors duration-300",
+                trigger: "bg-transparent text-slate-900 font-inter text-sm hover:bg-gray-100 pr-2 pl-3 py-3 border-r border-gray-200 flex items-center gap-2 shrink-0 max-w-[100px]",
+                dropdown: "bg-white border border-gray-200 shadow-xl text-slate-900 rounded-none mt-1",
+                search: "bg-gray-50 border-b border-gray-200 placeholder:text-gray-400 text-slate-900 font-inter text-sm",
+                item: "hover:bg-[#c01c83]/5 hover:text-[#c01c83] text-sm py-2 border-b border-gray-100 last:border-0 font-inter",
+                itemActive: "bg-[#c01c83]/10 text-[#c01c83] font-bold",
+                input: "bg-transparent text-slate-900 placeholder:text-gray-400 outline-none w-full py-3 px-3 font-inter text-sm h-full"
             };
         } else {
             // Creator (Color Run / Pop Art)

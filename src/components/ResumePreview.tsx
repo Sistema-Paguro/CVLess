@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { clsx } from 'clsx';
 import type { Profile } from '../context/ProfileContext';
+import { LABELS } from './wizard.types';
 
 interface ResumePreviewProps {
     initialProfile: Profile;
@@ -12,6 +13,7 @@ interface ResumePreviewProps {
 export const ResumePreview: React.FC<ResumePreviewProps> = ({ initialProfile, theme, targetRef, template }) => {
     // We keep a local copy of the profile to allow inline editing without triggering global re-renders
     const [profile, setProfile] = useState<Profile>(initialProfile);
+    const t = LABELS[profile.language || 'ES'];
 
     const getThemeBackground = () => {
         if (theme === 'specialist') return '#050505';
@@ -132,7 +134,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({ initialProfile, th
                     <div className="flex flex-col sm:flex-row gap-5">
                         {/* Skills Matrix */}
                         <div className="flex-1">
-                            <h3 className="text-[10px] tracking-widest uppercase opacity-50 mb-3 border-b border-current pb-1.5 text-brand-primary font-bold">Competency Matrix</h3>
+                            <h3 className="text-[10px] tracking-widest uppercase opacity-50 mb-3 border-b border-current pb-1.5 text-brand-primary font-bold">{t.cvSkills}</h3>
                             <div className="space-y-2">
                                 <div>
                                     <h4 className="text-[10px] font-bold uppercase mb-2 opacity-70">Core</h4>
@@ -155,7 +157,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({ initialProfile, th
 
                         {/* Tech Stack */}
                         <div className="flex-1">
-                            <h3 className="text-[10px] tracking-widest uppercase opacity-50 mb-3 border-b border-current pb-1.5 text-brand-primary font-bold">Tech Stack</h3>
+                            <h3 className="text-[10px] tracking-widest uppercase opacity-50 mb-3 border-b border-current pb-1.5 text-brand-primary font-bold">{t.cvExpertise}</h3>
                             <div className="flex flex-wrap gap-1.5">
                                 {profile.tech_stack.map((s, i) => (
                                     <span key={i} className="px-2 py-1 border border-current rounded-none font-mono text-[10px] uppercase hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-colors outline-none cursor-text" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'tech_stack', undefined, i)}>
@@ -171,7 +173,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({ initialProfile, th
                         "p-3 outline-none transition-colors",
                         template === 'modern' ? "border border-brand-accent/30 bg-brand-accent/5 backdrop-blur-sm rounded-none hover:border-brand-accent/60" : "border-t border-b border-current/20 hover:bg-white/5"
                     )}>
-                        <h3 className="text-[10px] tracking-widest uppercase opacity-50 mb-1">Strategic Transformation</h3>
+                        <h3 className="text-[10px] tracking-widest uppercase opacity-50 mb-1">{t.cvStrategic}</h3>
                         <div
                             className="text-[10px] opacity-40 mb-1 line-through decoration-brand-accent decoration-1.5 outline-none p-1 -mx-1"
                             contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'weakness', 'original')}
@@ -188,7 +190,7 @@ export const ResumePreview: React.FC<ResumePreviewProps> = ({ initialProfile, th
 
                     {/* Work Experience */}
                     <div className="mt-1 space-y-4">
-                        <h3 className="text-[10px] tracking-widest uppercase opacity-50 border-b border-current pb-1.5 text-brand-primary font-bold">Professional Trajectory</h3>
+                        <h3 className="text-[10px] tracking-widest uppercase opacity-50 border-b border-current pb-1.5 text-brand-primary font-bold">{t.cvExperience}</h3>
                         {profile.work_history.map((job, i) => (
                             <div key={i} className="group">
                                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">

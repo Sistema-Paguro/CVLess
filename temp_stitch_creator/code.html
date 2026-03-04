@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Becky Lu | Design Specialist Portfolio</title>
+<meta content="Personal portfolio of Becky Lu, a talented and ambitious Design Specialist." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=Dancing+Script:wght@600&amp;family=Inter:wght@300;400;500;600&amp;family=Libre+Baskerville:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#0360ab", // Vibrant Blue
+                        secondary: "#C01C83", // Bright Magenta
+                        "background-light": "#fdfaf2", // Cream/Off-white
+                        "background-dark": "#121212", // Deep Charcoal
+                    },
+                    fontFamily: {
+                        display: ["'Playfair Display'", "serif"],
+                        script: ["'Dancing Script'", "cursive"],
+                        serif: ["'Libre Baskerville'", "serif"],
+                        sans: ["'Inter'", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        .magenta-bullet::before {
+            content: "⬢";
+            color: #C01C83;
+            margin-right: 0.75rem;
+            font-size: 0.8rem;
+        }
+        .hero-shape {
+            clip-path: circle(70% at 70% 30%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300">
+<div class="fixed top-6 right-6 z-50">
+<button class="p-2 rounded-full bg-white dark:bg-zinc-800 shadow-lg border border-slate-200 dark:border-zinc-700 hover:scale-110 transition-transform" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined text-primary block dark:hidden">dark_mode</span>
+<span class="material-symbols-outlined text-primary hidden dark:block">light_mode</span>
+</button>
+</div>
+<main class="max-w-6xl mx-auto px-6 py-12 md:py-20 lg:px-12">
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
+<div class="order-2 lg:order-1">
+<p class="font-script text-3xl text-primary mb-2">Design Specialist</p>
+<h1 class="font-display text-7xl md:text-8xl text-zinc-900 dark:text-white uppercase leading-tight tracking-tight mb-8">
+                    BECKY LU
+                </h1>
+<div class="w-24 h-1.5 bg-secondary mb-10"></div>
+<p class="text-lg md:text-xl leading-relaxed text-zinc-600 dark:text-zinc-400 mb-10 max-w-xl">
+                    Talented and ambitious Design Specialist with six years of experience working closely with local and international clients across various industries. Proficient in multiple design languages, Becky brings forth interesting design solutions to new landscapes.
+                </p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-sm tracking-wide">
+<div>
+<p class="text-secondary font-bold uppercase mb-2">Contact</p>
+<p class="mb-1 dark:text-zinc-300">123 North Lake, MN</p>
+<p class="mb-1 dark:text-zinc-300">mail@example.com</p>
+</div>
+<div class="sm:pt-8">
+<p class="mb-1 dark:text-zinc-300">123-456-7890</p>
+<p class="mb-1 dark:text-zinc-300 underline decoration-secondary underline-offset-4">www.example.com</p>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 relative flex justify-center">
+<div class="absolute -top-10 -right-10 w-full h-full bg-primary/10 rounded-full blur-3xl opacity-50 dark:opacity-20"></div>
+<div class="relative w-full max-w-md aspect-square overflow-hidden rounded-2xl shadow-2xl border-b-8 border-primary">
+<img alt="Becky Lu professional portrait" class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSmDNSoOWek2buuT3bnIaX86jCFTjijIX9aa6eqRTSBe1uxybu6MF9SPye90VWkCK7mEEHZJ7mx5HcR9Nw-5rywtnniCFo3-QWj2Wg9b0tMEhRx-jqP73e1j9CxOEP0sGqjT3S0uOYAJq_pnS20_6YTZa3G5MouJUuhakPDHAX-argNZF6gginwZzZOWS3izPlAMU9vY9BLtgegcQohLFI8aFw24rSdZOwl8-kZ-Rkf6XvG4TJVljKRS5jjv2OCjCA08ZUfyU_5hA"/>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 border-t border-slate-200 dark:border-zinc-800 pt-16">
+<div class="lg:col-span-4 space-y-16">
+<div>
+<h2 class="font-display text-4xl text-primary mb-8 border-b-2 border-slate-100 dark:border-zinc-800 pb-2">Skills</h2>
+<ul class="space-y-4 text-zinc-700 dark:text-zinc-300 font-medium">
+<li class="magenta-bullet">Problem solving skills</li>
+<li class="magenta-bullet">Communication skills</li>
+<li class="magenta-bullet">3D design tools</li>
+<li class="magenta-bullet">Teamwork skills</li>
+<li class="magenta-bullet">Storytelling skills</li>
+<li class="magenta-bullet">Web design skills</li>
+</ul>
+</div>
+<div>
+<h2 class="font-display text-4xl text-primary mb-8 border-b-2 border-slate-100 dark:border-zinc-800 pb-2">Education</h2>
+<div class="space-y-2">
+<p class="text-secondary font-bold text-lg font-serif">West University</p>
+<p class="text-zinc-700 dark:text-zinc-300 font-medium italic">BA in Graphic Design</p>
+<p class="text-zinc-500 dark:text-zinc-500 text-sm">2013 - 2016</p>
+</div>
+</div>
+</div>
+<div class="lg:col-span-8 lg:border-l lg:border-dashed border-slate-300 dark:border-zinc-700 lg:pl-16">
+<h2 class="font-display text-4xl text-primary mb-8 border-b-2 border-slate-100 dark:border-zinc-800 pb-2">Experience</h2>
+<div class="space-y-12">
+<div>
+<div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-4">
+<h3 class="text-2xl font-bold font-serif text-secondary">Design Specialist</h3>
+<span class="text-zinc-900 dark:text-zinc-400 font-semibold mt-1 md:mt-0">Design Way <span class="font-normal text-zinc-400 mx-2">|</span> 2019 - present</span>
+</div>
+<ul class="space-y-4 text-zinc-600 dark:text-zinc-400">
+<li class="magenta-bullet">Offer guidance and advice for creative team on best practices to the production of print and digital graphic designs.</li>
+<li class="magenta-bullet">Introduce new ways to optimize designs to best suit the changing market environment.</li>
+<li class="magenta-bullet">Provide constructive criticism and relevant feedback for creative and design team to continue to produce quality work in an efficient manner.</li>
+</ul>
+</div>
+<div>
+<div class="flex flex-col md:flex-row md:items-baseline md:justify-between mb-4">
+<h3 class="text-2xl font-bold font-serif text-secondary">Social Media Assistant</h3>
+<span class="text-zinc-900 dark:text-zinc-400 font-semibold mt-1 md:mt-0">Art Creations <span class="font-normal text-zinc-400 mx-2">|</span> 2017 - 2018</span>
+</div>
+<ul class="space-y-4 text-zinc-600 dark:text-zinc-400">
+<li class="magenta-bullet">Create design concepts and provide additional support to senior members of the design team.</li>
+<li class="magenta-bullet">Work directly with the marketing team in developing an effective and appealing social media marketing plan.</li>
+<li class="magenta-bullet">Responsible for visualizing and producing designs for social media posts.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<footer class="mt-24 pt-16 border-t border-slate-200 dark:border-zinc-800">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<div class="lg:col-span-4">
+<h2 class="font-display text-4xl text-primary uppercase tracking-wider mb-8 lg:mb-0">REFERENCES</h2>
+</div>
+<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<p class="text-2xl font-bold font-serif text-secondary">Dianna Grey</p>
+<p class="text-zinc-900 dark:text-zinc-300 font-medium">Sn. Designer, Art Creations</p>
+<div class="text-sm space-y-1 text-zinc-500 dark:text-zinc-400">
+<p><span class="font-bold text-zinc-700 dark:text-zinc-300">Phone:</span> 123-456-7890</p>
+<p><span class="font-bold text-zinc-700 dark:text-zinc-300">Email:</span> mail@example.com</p>
+</div>
+</div>
+<div class="space-y-4">
+<p class="text-2xl font-bold font-serif text-secondary">Cindy Xi</p>
+<p class="text-zinc-900 dark:text-zinc-300 font-medium">Creative Director, Design Way</p>
+<div class="text-sm space-y-1 text-zinc-500 dark:text-zinc-400">
+<p><span class="font-bold text-zinc-700 dark:text-zinc-300">Phone:</span> 123-456-7890</p>
+<p><span class="font-bold text-zinc-700 dark:text-zinc-300">Email:</span> mail@example.com</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-24 text-center text-xs text-zinc-400 dark:text-zinc-600 uppercase tracking-widest pb-8">
+                © 2024 Becky Lu Portfolio. All Rights Reserved.
+            </div>
+</footer>
+</main>
+<div class="pointer-events-none fixed inset-0 opacity-[0.03] dark:opacity-[0.05]" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBFwKGNfWyL6vne5kumyW0fQ2Y81hl5Iu888Z-t4zVuZnGFVjDVb_BbGA4F2a5IN47wCbRZah3M4kx4a9oIe7TsYtehGpZbJcJB1iJZF83SwUqgkmIbeOMgym911rm6Xl5-Ppcmm9vjR8_cpp9VYNmiluKWR3OgxoXKMwXXmdQQhA2ytJHfXotbQGcYYu2W2nRAlmvCTFAgeudmcalFVvV--6GRblRl-X-2wluGh18MYZMrlxb6IiIA7Zom2EK1sjberUE39uaMv0');"></div>
+
+</body></html>

@@ -14,6 +14,8 @@ export interface IdentityInput {
     strengths: string[];
     weakness: string;
     photoUrl?: string;
+    age?: string;
+    gender?: string;
     language: 'ES' | 'EN';
     vibe: 'executive' | 'specialist' | 'creator';
     targetRole: string;
@@ -35,9 +37,11 @@ export const generateIdentity = async (input: IdentityInput) => {
     const prompt = "Eres un sistema inteligente 'AI Resume Builder' estructurado en 3 agentes internos operando en cascada:\n" +
         "1. Data Parser: Extraer y clasificar la información.\n" +
         "2. Content Enhancer: Redactar de forma estratégica, persuasiva, usando verbos de acción y métricas.\n" +
-        "3. Formatter & Limiter: Aplicar REGLAS DE ESPACIO ABSOLUTAS para que el CV encaje en una PÁGINA A4.\n\n" +
+        "3. Formatter: Aplicar REGLAS DE ESPACIO para que el CV encaje en una PÁGINA A4.\n\n" +
         "INPUT DEL USUARIO:\n" +
         "- Nombre: " + input.fullName + "\n" +
+        "- Edad: " + (input.age || 'No especificada') + "\n" +
+        "- Género: " + (input.gender || 'No especificado') + "\n" +
         "- Ubicación: " + input.location + "\n" +
         "- Email: " + input.email + "\n" +
         "- Teléfono: " + input.phone + "\n" +
@@ -47,16 +51,22 @@ export const generateIdentity = async (input: IdentityInput) => {
         "- Debilidad: " + input.weakness + "\n" +
         "- Rol Objetivo: " + input.targetRole + "\n" +
         "- Seniority: " + input.seniority + "\n" +
+        "- Estilo/Vibe: " + input.vibe + "\n" +
         "- Idioma: " + (input.language === 'EN' ? 'Inglés' : 'Español') + "\n\n" +
-        "⚠️ REGLAS Y LÍMITES ESTRICTOS PARA ENCAJAR EN 1 PÁGINA A4 (Agente 3 - ATS Optimization):\n" +
-        "- PROFESSIONAL SUMMARY: Máximo 30 palabras (2 líneas). Debe incluir densidad alta de keywords ATS modernas.\n" +
-        "- KEYWORDS OBLIGATORIAS (UX/UI 2025): Integra de forma natural términos como: User Research, Interaction Design, Prototyping, Design Systems, UX Strategy, Information Architecture, Accessibility (WCAG), Stakeholder Management, Cross-functional Collaboration, Agile/Scrum.\n" +
-        "- JOB TITLE FACTUAL: Usa SOLO títulos estándar de la industria (ej. 'Senior UX/UI Designer', 'Product Designer') NO uses versiones estilizadas ni creativas.\n" +
-        "- DATE FORMATTING: Formato estricto para periodos de trabajo: 'MMM YYYY - MMM YYYY' (ej. Jan 2020 - Mar 2025 o Ene 2020 - Mar 2025, de acuerdo al idioma).\n" +
-        "- LECTURA LINEAL ATS: No uses columnas ni estructuras irregulares para el contenido.\n" +
-        "- SKILLS: MÁXIMO EXACTO TOTAL DE 8 SKILLS sumando matrices. Usa términos puros ATS sin gráficos.\n" +
-        "- EXPERIENCE: MÁXIMO 2 trabajos recientes (3 si son muy breves). MÁXIMO 2 viñetas por trabajo (80 caracteres c/u). DEBE SER EXTREMADAMENTE CONCISO.\n" +
-        "- EDUCATION: Opcional, deducido de la info. Máximo 2 entradas.\n\n" +
+        `⚠️ INSTRUCCIÓN CRÍTICA DE EXPERIENCIA LABORAL:\n` +
+        `El usuario proporcionará su experiencia base en "Experiencia e info en bruto". TU DEBER ES USAR ESTA INFORMACIÓN COMO LA BASE ABSOLUTA. Si el usuario menciona trabajos, roles o empresas específicas (ej. 5 años en Teleperformance), DEBES incluirlos en el output y enfocarte en expandirlos y redactarlos profesionalmente con logros de alto impacto. No inventes historiales laborales al azar si el usuario ya proporcionó su base.\n\n` +
+        `⚠️ INSTRUCCIÓN CRÍTICA DE TIEMPO Y EDAD:\n` +
+        `El usuario tiene la EDAD de ${input.age || 'No especificada'} años. LA LÍNEA DE TIEMPO DEL HISTORIAL LABORAL DEBE SER LÓGICA Y ACORDE A ESTA EDAD. Si el usuario es joven (ej. 20-25 años), su experiencia laboral no puede empezar hace 15 años. Usa AÑOS REALISTAS y congruentes (ej. fechas de los últimos 1 a 5 años si es joven). Trata de inferir los años de experiencia de acuerdo a la edad para que los perfiles ficticios no queden surrealistas.\n\n` +
+        "⚠️ REGLAS Y LÍMITES DE DISEÑO:\n" +
+        (input.vibe === 'executive' ?
+            "- DISEÑO EXECUTIVE: Alto impacto visual y redacción sustancial (párrafos envolventes, Summary max 45 palabras, Experience bullets enriquecidos). Enfoque en liderazgo y resultados estratégicos. Ignora la sección debilidad.\n" :
+            input.vibe === 'specialist' ?
+                "- DISEÑO SPECIALIST: Enfoque altamente técnico y estructurado. Genera contenido prolijo y denso en keywords técnicas. Expande las viñetas de experiencia para demostrar un expertise profundo. Genera de 10 a 15 skills relevantes en total (distribuidas entre core, secondary y tech_stack) acordes al seniority.\n" :
+                "- DISEÑO CREATOR: Enfoque dinámico y moderno. Genera contenido rico y visualmente equilibrado. IMPORTANTE: Genera de 8 a 15 skills en total según el seniority. Asegúrate de proporcionar suficientes viñetas de experiencia (3 a 4 logros detallados por rol) para llenar visualmente la sección con impacto creativo y cuantificable.\n"
+        ) +
+        "- FORMATO DE FECHA LABORAL: Formato riguroso 'YYYY - YYYY' o 'YYYY - Present' (ej. 2023 - Present). EVITA PONER MESES PARA ESTE THEME.\n" +
+        "- EXPERIENCE: Genera contenido robusto y detallado. MÁXIMO 4 trabajos recientes. Asegura al menos 2-4 viñetas bien elaboradas por trabajo.\n" +
+        "- EDUCATION: Opcional, deducido o inventado creíblemente. Máximo 2 entradas. Año formato 'YYYY - YYYY'.\n\n" +
         "Devuelve SOLO UNA RESPUESTA EN FORMATO JSON VÁLIDO PURA Y SIN MARCADORES DE CÓDIGO (sin ```json).\n" +
         "Asegúrate de que la salida respete EXACTAMENTE este esquema JSON:\n" +
         "{\n" +
@@ -88,7 +98,7 @@ export const generateIdentity = async (input: IdentityInput) => {
         "      \"flipped\": \"La debilidad replanteada como un punto de mejora constructivo profesional.\"\n" +
         "  }\n" +
         "}\n\n" +
-        "Asegúrate de que TODOS LOS CAMPOS ESTÉN EN el Idioma " + input.language + ". DEBES RESPETAR EL LÍMITE GENERAL DE 8 SKILLS SUMANDO skills_matrix y tech_stack.";
+        "Asegúrate de que TODOS LOS CAMPOS ESTÉN EN el Idioma " + input.language + ". DISTRIBUYE AL MENOS 10 SKILLS/TECNOLOGÍAS ENTRE skills_matrix y tech_stack SI EL SENIORITY ES MAYOR A JUNIOR.";
 
     const result = await model.generateContent(prompt);
     let textResult = result.response.text().trim();

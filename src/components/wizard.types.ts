@@ -38,6 +38,22 @@ export const LABELS: Record<string, any> = {
         sequence: "Sequence",
         seniorityLevels: ["Junior", "Mid", "Senior"],
         uploadAction: "Upload Image",
+        sectionIdentity: "IDENTITY",
+        sectionObjective: "OBJECTIVE",
+        sectionCustomization: "CUSTOMIZATION",
+        outputLanguage: "OUTPUT LANGUAGE",
+        visualStyle: "VISUAL STYLE",
+        realtimePreview: "REAL-TIME PREVIEW",
+        cvExperience: "Experience",
+        cvSkills: "Skills",
+        cvEducation: "Education",
+        cvExpertise: "Expertise",
+        cvProfileTitle: "Profile",
+        cvAddress: "Address",
+        cvPhone: "Phone",
+        cvEmail: "Email",
+        cvDetails: "Details",
+        cvStrategic: "Strategic Transformation",
         // Creator Mode
         subject: "Subject_Identity",
         narrative: "TELL ME ABOUT YOU",
@@ -49,12 +65,13 @@ export const LABELS: Record<string, any> = {
         storyPlaceholder: "Tell us your story...",
         yourName: "YOUR NAME",
         roles: [
-            "Frontend Developer", "Backend Developer", "Fullstack Developer",
-            "UX/UI Designer", "Product Manager", "Project Manager",
-            "Data Analyst", "Virtual Assistant", "Customer Success",
-            "Sales Representative", "Marketing Specialist", "Human Resources",
-            "Financial Analyst", "Graphic Designer", "Content Writer",
-            "Operations Manager"
+            "Customer Service Representative", "Bilingual Agent", "Technical Support",
+            "Virtual Assistant", "SDR (Sales Development Rep)", "BDR (Business Development)",
+            "Account Executive", "Customer Success Manager", "Data Entry Specialist",
+            "Administrative Assistant", "Community Manager", "Content Moderator",
+            "Project Manager", "Frontend Developer", "Backend Developer",
+            "UX/UI Designer", "Data Analyst", "Marketing Specialist",
+            "Human Resources", "Graphic Designer", "Content Writer"
         ],
         strengthsLabel: "Strengths (+)",
         strengthsPlaceholder: "Add strength...",
@@ -71,7 +88,11 @@ export const LABELS: Record<string, any> = {
             "Impatience", "Excessive Self-Criticism", "Conflict Management",
             "Risk Taking", "Saying 'No'", "Extreme Detail",
             "Specific Technical Experience"
-        ]
+        ],
+        age: "Chronological Age",
+        agePlaceholder: "e.g. 28",
+        gender: "Gender Classification",
+        genderOptions: ["Masculine", "Feminine", "Other"]
     },
     ES: {
         photo: "Visual de Perfil",
@@ -100,6 +121,22 @@ export const LABELS: Record<string, any> = {
         sequence: "Secuencia",
         seniorityLevels: ["Junior", "Medio", "Senior"],
         uploadAction: "Subir Imagen",
+        sectionIdentity: "IDENTIDAD",
+        sectionObjective: "OBJETIVO",
+        sectionCustomization: "PERSONALIZACIÓN",
+        outputLanguage: "IDIOMA OUTPUT",
+        visualStyle: "ESTILO VISUAL",
+        realtimePreview: "PREVISUALIZACIÓN EN TIEMPO REAL",
+        cvExperience: "Experiencia",
+        cvSkills: "Habilidades",
+        cvEducation: "Educación",
+        cvExpertise: "Áreas de Experiencia",
+        cvProfileTitle: "Perfil",
+        cvAddress: "Dirección",
+        cvPhone: "Teléfono",
+        cvEmail: "Correo",
+        cvDetails: "Detalles",
+        cvStrategic: "Transformación Estratégica",
         // Creator Mode
         subject: "Identidad_Sujeto",
         narrative: "CUÉNTAME SOBRE TI",
@@ -111,12 +148,13 @@ export const LABELS: Record<string, any> = {
         storyPlaceholder: "Cuéntanos tu historia...",
         yourName: "TU NOMBRE",
         roles: [
-            "Desarrollador Frontend", "Desarrollador Backend", "Desarrollador Fullstack",
-            "Diseñador UX/UI", "Product Manager", "Project Manager",
-            "Analista de Datos", "Asistente Virtual", "Customer Success",
-            "Representante de Ventas", "Especialista de Marketing", "Recursos Humanos",
-            "Analista Financiero", "Diseñador Gráfico", "Redactor de Contenidos",
-            "Gerente de Operaciones"
+            "Representante de Servicio al Cliente", "Agente Bilingüe", "Soporte Técnico",
+            "Asistente Virtual", "SDR (Desarrollo de Ventas)", "BDR (Desarrollo de Negocios)",
+            "Ejecutivo de Cuentas", "Customer Success Manager", "Especialista en Data Entry",
+            "Asistente Administrativo", "Community Manager", "Moderador de Contenido",
+            "Project Manager", "Desarrollador Frontend", "Desarrollador Backend",
+            "Diseñador UX/UI", "Analista de Datos", "Especialista de Marketing",
+            "Recursos Humanos", "Diseñador Gráfico", "Redactor de Contenidos"
         ],
         strengthsLabel: "Fortalezas (+)",
         strengthsPlaceholder: "Añadir fortaleza...",
@@ -133,6 +171,10 @@ export const LABELS: Record<string, any> = {
             "Impaciencia", "Autocrítica Excesiva", "Gestión de Conflictos",
             "Tomar Riesgos", "Decir 'No'", "Detallismo Extremo",
             "Experiencia Técnica Específica"
-        ]
+        ],
+        age: "Edad Cronológica",
+        agePlaceholder: "Ej. 28",
+        gender: "Clasificación de Género",
+        genderOptions: ["Masculino", "Femenino", "Otro"]
     }
 };

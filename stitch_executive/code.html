@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Steve Warner - Resume</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="base-typography">
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #000;
+      background-color: #f3f4f6; /* Light gray background to simulate the page on a surface */
+      -webkit-font-smoothing: antialiased;
+    }
+    .letter-spacing-widest {
+      letter-spacing: 0.4em;
+    }
+    .letter-spacing-wide {
+      letter-spacing: 0.15em;
+    }
+  </style>
+<style data-purpose="layout-containers">
+    .resume-page {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      padding: 60px 50px;
+      min-height: 1100px;
+    }
+    /* Vertical line for the experience section */
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body class="p-4 md:p-10">
+<!-- BEGIN: Resume Container -->
+<main class="resume-page" data-purpose="resume-main-container">
+<!-- BEGIN: Header Section -->
+<header class="mb-8">
+<div class="flex flex-col md:flex-row justify-between items-start border-l border-black pl-6 py-2">
+<div data-purpose="name-block">
+<h2 class="text-2xl font-light letter-spacing-widest uppercase mb-1">Steve</h2>
+<h1 class="text-6xl font-extrabold letter-spacing-widest uppercase leading-none">Warner</h1>
+</div>
+</div>
+<!-- Sub-header and Contact Info Bar -->
+<div class="mt-10 border-t border-b border-black py-4 flex flex-col md:flex-row justify-between items-center px-2">
+<div class="flex items-center" data-purpose="job-title-box">
+<span class="mr-3 text-lg">•</span>
+<span class="text-sm font-bold letter-spacing-widest uppercase">Lead UX Designer</span>
+</div>
+<div class="flex flex-col gap-1 mt-4 md:mt-0 text-[10px] font-medium" data-purpose="contact-info">
+<div class="flex items-center">
+<span class="w-4 h-4 bg-black text-white flex items-center justify-center mr-2 text-[8px] font-bold">E</span>
+<span>hello@stevewarner.com</span>
+</div>
+<div class="flex items-center">
+<span class="w-4 h-4 bg-black text-white flex items-center justify-center mr-2 text-[8px] font-bold">P</span>
+<span>+01 234 567 8900</span>
+</div>
+<div class="flex items-center">
+<span class="w-4 h-4 bg-black text-white flex items-center justify-center mr-2 text-[8px] font-bold">A</span>
+<span>01. Street Park Avenue, NY</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: Header Section -->
+<!-- BEGIN: Main Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 mt-12">
+<!-- LEFT COLUMN: Profile & Experience -->
+<section class="md:col-span-8">
+<!-- PROFILE -->
+<div class="mb-12">
+<h3 class="text-sm font-bold letter-spacing-widest uppercase mb-6">Profile</h3>
+<p class="text-xs text-gray-700 leading-relaxed text-justify">
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+          </p>
+</div>
+<!-- EXPERIENCE -->
+<div class="relative pl-8">
+<div class="timeline-line"></div>
+<h3 class="text-sm font-bold letter-spacing-widest uppercase mb-10 -ml-8 bg-white inline-block px-2">Experience</h3>
+<!-- Experience Item 1 -->
+<div class="mb-10 relative">
+<div class="absolute -left-[36px] top-1.5 w-2 h-2 rounded-full bg-black"></div>
+<h4 class="text-xs font-bold uppercase tracking-wider">Name of Company</h4>
+<div class="text-[10px] font-medium text-gray-500 uppercase tracking-tight mb-3">Job Title | 2034 - Present</div>
+<p class="text-[10px] leading-relaxed text-gray-700 mb-2">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+            </p>
+<p class="text-[10px] leading-relaxed text-gray-700">
+              Asi hitech beatae vitae dicta sunt cabo. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+            </p>
+</div>
+<!-- Experience Item 2 -->
+<div class="mb-10 relative">
+<div class="absolute -left-[36px] top-1.5 w-2 h-2 rounded-full bg-black"></div>
+<h4 class="text-xs font-bold uppercase tracking-wider">Name of Company</h4>
+<div class="text-[10px] font-medium text-gray-500 uppercase tracking-tight mb-3">Job Title | 2032 - 2034</div>
+<p class="text-[10px] leading-relaxed text-gray-700 mb-2">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+            </p>
+<p class="text-[10px] leading-relaxed text-gray-700">
+              Asi hitech beatae vitae dicta sunt cabo. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+            </p>
+</div>
+<!-- Experience Item 3 -->
+<div class="mb-10 relative">
+<div class="absolute -left-[36px] top-1.5 w-2 h-2 rounded-full bg-black"></div>
+<h4 class="text-xs font-bold uppercase tracking-wider">Name of Company</h4>
+<div class="text-[10px] font-medium text-gray-500 uppercase tracking-tight mb-3">Job Title | 2030 - 2032</div>
+<p class="text-[10px] leading-relaxed text-gray-700 mb-2">
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+            </p>
+<p class="text-[10px] leading-relaxed text-gray-700">
+              Asi hitech beatae vitae dicta sunt cabo. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.
+            </p>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: Skills & Education -->
+<section class="md:col-span-4">
+<!-- SKILLS -->
+<div class="mb-16">
+<h3 class="text-sm font-bold letter-spacing-widest uppercase mb-6">Skills</h3>
+<div class="mb-4">
+<p class="text-[10px] font-bold uppercase mb-4 tracking-tighter">Professional</p>
+<ul class="text-[10px] space-y-2 text-gray-700">
+<li class="flex items-start"><span class="mr-2">•</span> Graphic Design</li>
+<li class="flex items-start"><span class="mr-2">•</span> UI/UX Design</li>
+<li class="flex items-start"><span class="mr-2">•</span> Web Design</li>
+<li class="flex items-start"><span class="mr-2">•</span> Content Development</li>
+<li class="flex items-start"><span class="mr-2">•</span> Copywriting</li>
+<li class="flex items-start"><span class="mr-2">•</span> Corporate Blogging</li>
+<li class="flex items-start"><span class="mr-2">•</span> Project Management</li>
+<li class="flex items-start"><span class="mr-2">•</span> Market Research</li>
+</ul>
+</div>
+</div>
+<!-- EDUCATION -->
+<div class="education-section">
+<h3 class="text-sm font-bold letter-spacing-widest uppercase mb-10">Education</h3>
+<div class="mb-8 pl-4 border-l border-black relative">
+<h4 class="text-[11px] font-bold uppercase tracking-wider">Degree Title</h4>
+<p class="text-[10px] text-gray-600">University | 2030-34</p>
+<p class="text-[10px] text-gray-600">Major Subject</p>
+</div>
+<div class="mb-8 pl-4 border-l border-black relative">
+<h4 class="text-[11px] font-bold uppercase tracking-wider">Degree Title</h4>
+<p class="text-[10px] text-gray-600">University | 2028-30</p>
+<p class="text-[10px] text-gray-600">Major Subject</p>
+</div>
+<div class="mb-8 pl-4 border-l border-black relative">
+<h4 class="text-[11px] font-bold uppercase tracking-wider">Degree Title</h4>
+<p class="text-[10px] text-gray-600">University | 2026-28</p>
+<p class="text-[10px] text-gray-600">Major Subject</p>
+</div>
+</div>
+</section>
+</div>
+<!-- END: Main Content Grid -->
+</main>
+<!-- END: Resume Container -->
+</body></html>

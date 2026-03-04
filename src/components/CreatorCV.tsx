@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Linkedin, Code2, Paintbrush } from 'lucide-react';
+import { Palette } from 'lucide-react';
 import type { Profile } from '../context/ProfileContext';
+import { LABELS } from './wizard.types';
 
 interface CreatorCVProps {
     initialProfile: Profile;
@@ -10,6 +11,7 @@ interface CreatorCVProps {
 export const CreatorCV = ({ initialProfile, targetRef }: CreatorCVProps) => {
     // Keep local copy to allow inline edits if necessary
     const [profile, setProfile] = useState<Profile>(initialProfile);
+    const t = LABELS[profile.language || 'ES'];
 
     const handleTextEdit = (
         e: React.FormEvent<HTMLElement>,
@@ -48,164 +50,150 @@ export const CreatorCV = ({ initialProfile, targetRef }: CreatorCVProps) => {
             {/* The Print Container (A4 Ratio) */}
             <div
                 ref={targetRef}
-                className="relative w-full max-w-[210mm] min-h-[297mm] max-h-[297mm] bg-[#F9FAFB] overflow-hidden flex flex-col mx-auto shadow-2xl font-inter text-[#111827] shrink-0 print:border-none"
+                className="relative w-full max-w-[210mm] min-h-[297mm] max-h-[297mm] overflow-hidden flex flex-col mx-auto shadow-2xl shrink-0 print:border-none print:shadow-none"
                 style={{
-                    backgroundColor: '#F9FAFB',
-                    boxShadow: 'inset 0 0 0 1000px #F9FAFB'
+                    backgroundColor: '#fdfaf2', // background-light
+                    boxShadow: 'inset 0 0 0 1000px #fdfaf2',
+                    fontFamily: "'Inter', sans-serif"
                 }}
             >
-                {/* Header Decoration */}
-                <div className="h-4 w-full bg-[#7C3AED]"></div>
-
                 {/* Main Content Padding wrapper */}
-                <div className="flex-1 flex flex-col p-[10mm] sm:p-[12mm]">
+                <div className="flex-1 flex flex-col p-[8mm] text-slate-800 relative z-10 w-full h-full">
 
-                    {/* HERO HEADER */}
-                    <header className="flex flex-row items-center justify-between gap-4 mb-4 pb-4 border-b border-gray-200">
-                        <div className="flex items-center gap-6">
-                            {/* Avatar */}
-                            {profile.photoUrl && (
-                                <img src={profile.photoUrl} alt={profile.brand_name} className="w-20 h-20 rounded-2xl object-cover shadow-sm shrink-0" />
-                            )}
-                            <div className="max-w-2xl">
-                                <h1
-                                    className="text-4xl lg:text-5xl font-black mb-1 tracking-tight outline-none focus:bg-white/50 hover:bg-black/5 transition-colors leading-[1.1] rounded-sm"
-                                    contentEditable
-                                    suppressContentEditableWarning
-                                    onBlur={(e) => handleTextEdit(e, 'brand_name')}
-                                >
-                                    {profile.brand_name?.toUpperCase() || "NAME UNKNOWN"}
-                                </h1>
-                                <h2
-                                    className="text-lg font-semibold text-[#7C3AED] uppercase tracking-wide outline-none focus:bg-white/50 hover:bg-black/5 transition-colors p-1 -ml-1 rounded-sm"
-                                    contentEditable
-                                    suppressContentEditableWarning
-                                    onBlur={(e) => handleTextEdit(e, 'hero_headline')}
-                                >
-                                    {profile.hero_headline || "CREATIVE PROFESSIONAL"}
-                                </h2>
-                            </div>
-                        </div>
+                    {/* HERO HEADER SECTION */}
+                    <header className="flex flex-row justify-between items-start mb-6 shrink-0">
+                        <div className="flex-1 pr-6">
+                            <h2
+                                className="text-xl md:text-2xl text-[#0360ab] mb-1 font-semibold outline-none hover:bg-black/5 rounded-sm p-1 -ml-1 transition-colors capitalize"
+                                style={{ fontFamily: "'Dancing Script', cursive" }}
+                                contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'hero_headline')}
+                            >
+                                {profile.hero_headline || "Creative Professional"}
+                            </h2>
+                            <h1
+                                className="text-[2.5rem] md:text-[3.5rem] text-zinc-900 uppercase leading-none tracking-tight mb-2 outline-none hover:bg-black/5 rounded-sm p-1 -ml-1 transition-colors break-words font-black"
+                                style={{ fontFamily: "'Playfair Display', serif" }}
+                                contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'brand_name')}
+                            >
+                                {profile.brand_name || "YOUR NAME"}
+                            </h1>
+                            <div className="w-16 h-1 bg-[#C01C83] mb-3 mt-1"></div>
 
-                        {/* Contact Info Group */}
-                        <div className="flex flex-col gap-1.5 text-xs text-gray-600 font-medium whitespace-nowrap">
-                            {profile.contact.phone && (
-                                <div className="flex items-center gap-2 outline-none focus:bg-white/50 hover:bg-black/5 p-1 -ml-1 transition-colors rounded-sm" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'phone')}>
-                                    <Phone className="w-3.5 h-3.5 text-[#EC4899]" />
-                                    <span>{profile.contact.phone}</span>
-                                </div>
-                            )}
-                            {profile.contact.email && (
-                                <div className="flex items-center gap-2 outline-none focus:bg-white/50 hover:bg-black/5 p-1 -ml-1 transition-colors rounded-sm" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'email')}>
-                                    <Mail className="w-3.5 h-3.5 text-[#EC4899]" />
-                                    <span>{profile.contact.email}</span>
-                                </div>
-                            )}
-                            {profile.contact.linkedin && (
-                                <div className="flex items-center gap-2 outline-none focus:bg-white/50 hover:bg-black/5 p-1 -ml-1 transition-colors rounded-sm" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'linkedin')}>
-                                    <Linkedin className="w-3.5 h-3.5 text-[#EC4899]" />
-                                    <span>{profile.contact.linkedin.replace(/https?:\/\/(www\.)?/, '')}</span>
-                                </div>
-                            )}
-                        </div>
-                    </header>
-
-                    {/* SINGLE COLUMN ATS-FRIENDLY LAYOUT */}
-                    <div className="flex flex-col gap-4 w-full">
-
-                        {/* Strategic Bio */}
-                        <section>
-                            <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Executive Summary</h3>
                             <p
-                                className="text-xs leading-relaxed text-gray-600 outline-none focus:bg-white/50 hover:bg-black/5 transition-colors p-2 -mx-2 rounded-md font-medium text-justify"
-                                contentEditable
-                                suppressContentEditableWarning
-                                onBlur={(e) => handleTextEdit(e, 'strategic_bio')}
+                                className="text-[10px] leading-relaxed text-zinc-600 mb-3 max-w-sm outline-none hover:bg-black/5 rounded-sm p-1 -ml-1 transition-colors text-justify"
+                                contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'strategic_bio')}
                             >
                                 {profile.strategic_bio}
                             </p>
-                        </section>
 
-                        {/* Core Expertise & Tech Stack (Text Based Grid) */}
-                        <section className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col gap-3">
+                            <div className="flex flex-wrap gap-x-6 gap-y-1 text-[9.5px] tracking-wide">
+                                <div className="flex items-center gap-1.5">
+                                    <span className="text-[#C01C83] font-bold uppercase shrink-0">LOC:</span>
+                                    <span className="outline-none hover:bg-black/5 p-1 -ml-1 transition-colors" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'location')}>{profile.location}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="text-[#C01C83] font-bold uppercase shrink-0">E:</span>
+                                    <span className="outline-none hover:bg-black/5 p-1 -ml-1 transition-colors break-all" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'email')}>{profile.contact.email}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="text-[#C01C83] font-bold uppercase shrink-0">P:</span>
+                                    <span className="outline-none hover:bg-black/5 p-1 -ml-1 transition-colors" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'phone')}>{profile.contact.phone}</span>
+                                </div>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="text-[#C01C83] font-bold uppercase shrink-0">W:</span>
+                                    <span className="underline decoration-[#C01C83] underline-offset-2 outline-none hover:bg-black/5 p-1 -ml-1 transition-colors">{profile.contact.linkedin || "linkedin.com/"}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Image Block */}
+                        <div className="shrink-0 relative flex justify-end items-start pt-1">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#0360ab]/10 rounded-full blur-xl z-0"></div>
+                            <div className="relative w-28 h-28 aspect-square overflow-hidden rounded-2xl shadow-xl border-b-[6px] border-[#0360ab] z-10 bg-gray-200">
+                                {profile.photoUrl ? (
+                                    <img src={profile.photoUrl} alt="Profile" className="w-full h-full object-cover grayscale-[20%] sepia-[10%] contrast-110" />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                                        <Palette size={14} className="opacity-50" />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* TWO COLUMN GRID CONTENT */}
+                    <div className="flex gap-6 border-t border-slate-200 pt-4 flex-1">
+
+                        {/* LEFT: Skills & Education */}
+                        <div className="w-[33%] flex flex-col gap-5">
+
+                            {/* Skills */}
                             <div>
-                                <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] mb-2 flex items-center gap-2">
-                                    <Paintbrush className="w-3.5 h-3.5" /> Core Expertise
-                                </h3>
-                                <div className="grid grid-cols-3 gap-2">
-                                    {profile.skills_matrix.core.map((skill, index) => (
-                                        <div key={index} className="flex items-center text-xs font-semibold text-gray-700 before:content-['•'] before:text-[#EC4899] before:mr-2">
-                                            <span contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'skills_matrix', 'core', index)} className="outline-none hover:bg-black/5 p-1 -ml-1 rounded-sm w-full">{skill}</span>
-                                        </div>
+                                <h2 className="text-lg text-[#0360ab] mb-3 border-b border-slate-200 pb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                    {t.cvSkills}
+                                </h2>
+                                <ul className="space-y-1.5 text-zinc-700 font-medium text-[9.5px]">
+                                    {[...profile.skills_matrix.core].slice(0, 8).map((skill, idx) => (
+                                        <li key={"skill-" + idx} className="flex items-center gap-2">
+                                            <span className="text-[#C01C83] text-[8px]">⬢</span>
+                                            <span className="outline-none hover:bg-black/5 rounded-sm px-1 -ml-1" contentEditable suppressContentEditableWarning>{skill}</span>
+                                        </li>
                                     ))}
-                                </div>
+                                </ul>
                             </div>
 
-                            <div className="border-t border-gray-100 pt-2">
-                                <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#7C3AED] mb-2 flex items-center gap-2">
-                                    <Code2 className="w-3.5 h-3.5" /> Tech & Tools
-                                </h3>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {profile.tech_stack.map((tech, index) => (
-                                        <span key={index} contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'tech_stack', undefined, index)} className="text-[10px] font-semibold text-gray-600 px-2 py-0.5 border border-gray-200 rounded outline-none hover:bg-gray-100 transition-colors">
-                                            {tech}
-                                        </span>
-                                    ))}
+                            {/* Tech Stack (Mapped to secondary skills) */}
+                            {profile.tech_stack.length > 0 && (
+                                <div className="mt-1">
+                                    <h2 className="text-lg text-[#0360ab] mb-3 border-b border-slate-200 pb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                        {t.cvExpertise}
+                                    </h2>
+                                    <ul className="space-y-1.5 text-zinc-700 font-medium text-[9.5px]">
+                                        {[...profile.tech_stack].slice(0, 6).map((tech, idx) => (
+                                            <li key={"tech-" + idx} className="flex items-center gap-2">
+                                                <span className="text-[#C01C83] text-[8px]">⬢</span>
+                                                <span className="outline-none hover:bg-black/5 rounded-sm px-1 -ml-1" contentEditable suppressContentEditableWarning>{tech}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                            </div>
-                        </section>
+                            )}
 
-                        {/* Work Experience */}
-                        <section>
-                            <h3 className="text-[10px] font-bold tracking-widest uppercase text-[#EC4899] mb-3 border-b border-gray-200 pb-1.5">
-                                Professional Trajectory
-                            </h3>
+                        </div>
 
-                            <div className="space-y-4 mt-2">
-                                {profile.work_history.map((job, idx) => (
-                                    <div key={idx} className="relative pl-5 before:content-[''] before:absolute before:left-0 before:top-1.5 before:w-[2px] before:h-[calc(100%+8px)] before:bg-gray-200 last:before:h-full">
-                                        {/* Timeline Node */}
-                                        <div className="absolute left-[-3.5px] top-1.5 w-[9px] h-[9px] rounded-full bg-[#7C3AED] ring-4 ring-[#F9FAFB]"></div>
-
-                                        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-1">
-                                            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
-                                                <h4 className="text-sm font-bold text-gray-900 outline-none hover:bg-black/5 p-1 -ml-1 rounded-sm" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'role')}>
-                                                    {job.role}
-                                                </h4>
-                                                <span className="hidden sm:inline text-gray-300">|</span>
-                                                <div className="text-[11px] font-bold text-gray-500 outline-none hover:bg-black/5 p-1 -ml-1 rounded-sm inline-block" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'company')}>
-                                                    {job.company}
-                                                </div>
+                        {/* RIGHT: Experience */}
+                        <div className="w-[67%] border-l border-dashed border-slate-300 pl-6 flex flex-col">
+                            <h2 className="text-xl text-[#0360ab] mb-3 border-b border-slate-200 pb-1" style={{ fontFamily: "'Playfair Display', serif" }}>
+                                {t.cvExperience}
+                            </h2>
+                            <div className="flex flex-col gap-4">
+                                {profile.work_history.map((job: any, idx: number) => (
+                                    <div key={idx} className="group relative">
+                                        <div className="flex flex-col mb-1.5">
+                                            <h3 className="text-[12px] font-bold text-[#C01C83] outline-none hover:bg-black/5 p-1 -ml-1 inline-block" style={{ fontFamily: "'Libre Baskerville', serif" }} contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'role')}>
+                                                {job.role}
+                                            </h3>
+                                            <div className="flex items-center gap-2 text-[9.5px] font-semibold text-zinc-500 uppercase tracking-widest mt-0.5">
+                                                <span className="outline-none hover:bg-black/5 p-1 -ml-1 inline-block text-zinc-800" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'company')}>{job.company}</span>
+                                                <span className="text-zinc-300">|</span>
+                                                <span className="outline-none hover:bg-black/5 p-1 text-zinc-500" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'period')}>{job.period}</span>
                                             </div>
-                                            <span className="text-[10px] font-bold text-[#7C3AED] ml-1 outline-none hover:bg-black/5 p-1 rounded-sm whitespace-nowrap" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'period')}>
-                                                {job.period}
-                                            </span>
                                         </div>
-
-                                        <ul className="text-xs text-gray-600 space-y-1 leading-snug lg:pl-2">
-                                            {job.achievements.map((acc, aIdx) => (
-                                                <li key={aIdx} className="relative pl-3 before:content-['■'] before:text-[5px] before:text-[#EC4899] before:absolute before:left-0 before:top-[5px]">
-                                                    <span contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'achievements', aIdx)} className="outline-none hover:bg-black/5 p-1 -mx-1 rounded-sm block">
-                                                        {acc}
-                                                    </span>
-                                                </li>
+                                        <div className="flex flex-col gap-1 text-[9.5px] text-zinc-600 leading-snug outline-none hover:bg-black/5 p-1 -ml-1 text-justify pr-2">
+                                            {job.achievements.map((ach: string, aIdx: number) => (
+                                                <div key={aIdx} className="flex gap-2 items-start" contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'work_history', undefined, idx, 'achievements', aIdx)}>
+                                                    <span className="text-[#C01C83] text-[7px] mt-1 shrink-0">⬢</span>
+                                                    <span>{ach}</span>
+                                                </div>
                                             ))}
-                                        </ul>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
-                        </section>
+                        </div>
 
                     </div>
                 </div>
-
-                {/* Footer Decor */}
-                <div className="h-[15mm] w-full bg-gray-100 mt-auto flex items-center justify-between px-8 border-t border-gray-200 relative">
-                    <span className="absolute left-0 top-0 w-1/3 h-[2px] bg-gradient-to-r from-[#7C3AED] to-[#EC4899]"></span>
-                    <span className="text-[9px] font-bold text-gray-400 tracking-widest uppercase">{profile.brand_name}</span>
-                    <span className="text-[9px] font-bold text-[#7C3AED] tracking-widest uppercase">{profile.location}</span>
-                </div>
-
             </div>
         </div>
     );

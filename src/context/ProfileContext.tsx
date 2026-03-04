@@ -11,7 +11,10 @@ export interface Profile {
         phone: string;
         linkedin: string;
     };
+    age?: string;
+    gender?: string;
     photoUrl?: string;
+    language?: 'ES' | 'EN' | string;
     work_history: {
         company: string;
         role: string;

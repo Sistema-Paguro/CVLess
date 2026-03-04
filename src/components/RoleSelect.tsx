@@ -63,11 +63,11 @@ export const RoleSelect = ({ value, onChange, options, theme, placeholder = "Sel
             icon: "text-slate-400"
         },
         specialist: {
-            trigger: "bg-black/40 border-b border-[#d64d9e]/30 text-cyan-50 font-mono text-sm hover:border-[#c01c83] transition-colors rounded-none outline-none",
-            menu: "bg-[#050510] border border-[#d64d9e]/30 shadow-[0_4px_20px_-5px_rgba(192,28,131,0.5)] rounded-none mt-1",
-            item: "font-mono text-cyan-200/70 hover:bg-[#c01c83]/10 hover:text-[#d64d9e] text-sm",
-            activeItem: "bg-[#c01c83]/20 text-[#d64d9e] border-l-2 border-[#c01c83]",
-            icon: "text-[#d64d9e]"
+            trigger: "bg-white border text-slate-900 border-gray-200 focus:border-[#0360ab] focus:ring-1 focus:ring-[#0360ab]/20 rounded-none transition-colors",
+            menu: "bg-white border border-gray-200 shadow-xl rounded-none mt-1",
+            item: "font-inter text-slate-600 hover:bg-[#c01c83]/5 hover:text-[#c01c83] text-sm",
+            activeItem: "bg-[#c01c83]/10 text-[#c01c83] font-bold border-l-4 border-[#c01c83]",
+            icon: "text-[#c01c83]"
         },
         creator: {
             trigger: "bg-white border-2 border-black text-black font-inter font-bold hover:shadow-[4px_4px_0_#000] focus:border-[#0079d3] transition-all rounded-none",
