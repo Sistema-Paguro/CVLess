@@ -144,6 +144,18 @@ export const Wizard = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const isComplete = form.fullName?.trim() && form.email?.trim() && form.location?.trim() &&
+            form.phone?.trim() && form.linkedin?.trim() && form.targetRole?.trim() &&
+            form.rawInfo?.trim() && form.weakness?.trim() && form.strengths.length > 0 && form.photoUrl;
+
+        if (!isComplete) {
+            alert(form.language === 'ES'
+                ? "Por favor completa todos los campos requeridos y añade una foto de perfil antes de continuar."
+                : "Please fill in all required fields and add a profile photo before proceeding.");
+            return;
+        }
+
         setIsGenerating(true);
         try {
             setInputData(form);
@@ -521,9 +533,9 @@ function LoaderIcon() {
 
 // Interactive Loader logic
 const LOADING_PHASES = [
-    { title: "A.I. EXTRACTOR", subtitle: "Parsing raw input and identifying core entities..." },
-    { title: "A.I. ENHANCER", subtitle: "Applying models to optimize strategic impact..." },
-    { title: "A.I. FORMATTER", subtitle: "Assembling vector nodes for perfect alignment..." }
+    { title: "ESPERA UN MOMENTO POR FAVOR", subtitle: "Analizando la información base y estructurando tu perfil profesional..." },
+    { title: "SINTETIZANDO EXPERIENCIA", subtitle: "Aplicando modelos de inteligencia artificial para maximizar impacto de tus logros..." },
+    { title: "CONSTRUYENDO DISEÑO", subtitle: "Ensamblando los componentes visuales e inyectando las dependencias de diseño..." }
 ];
 
 function InteractiveLoader({ theme }: { theme: ThemeStyles }) {
