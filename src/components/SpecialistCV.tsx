@@ -62,17 +62,17 @@ export const SpecialistCV: React.FC<SpecialistCVProps> = ({ initialProfile, targ
                 }}
             >
                 {/* LEFT COLUMN (approx 35%) */}
-                <div className="w-[35%] bg-[#111827] flex flex-col relative border-r border-[#111827]/10" style={{ backgroundColor: '#111827', WebkitPrintColorAdjust: 'exact', printColorAdjust: 'exact' }}>
+                <div className="w-[35%] bg-white/60 flex flex-col relative border-r border-[#C01C83]/10" style={{ backgroundColor: 'rgba(255,255,255,0.6)', WebkitPrintColorAdjust: 'exact', printColorAdjust: 'exact' }}>
                     {/* Left Column Content Wrapper */}
                     <div className="pl-[8mm] pr-[6mm] pt-[12mm] h-full flex flex-col items-start w-full relative z-10">
                         {/* Name Block */}
                         <div className="mb-6 w-full">
-                            <h1 className="text-3xl font-black leading-tight tracking-tight text-white outline-none hover:bg-white/10 p-1 -ml-1 uppercase break-words"
+                            <h1 className="text-3xl font-black leading-tight tracking-tight text-black outline-none hover:bg-black/5 p-1 -ml-1 uppercase break-words"
                                 contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'brand_name')}>
                                 {profile.brand_name}
                             </h1>
                             <div className="w-16 h-1 bg-[#C01C83] mb-3 mt-1"></div>
-                            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest outline-none hover:bg-white/10 p-1 -ml-1"
+                            <h2 className="text-sm font-bold text-[#0360ab] uppercase tracking-widest outline-none hover:bg-black/5 p-1 -ml-1"
                                 contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'hero_headline')}>
                                 {profile.hero_headline}
                             </h2>
@@ -81,7 +81,7 @@ export const SpecialistCV: React.FC<SpecialistCVProps> = ({ initialProfile, targ
                         {/* Profile Block */}
                         <div className="mb-6 w-full">
                             <h3 className="text-[11px] font-bold text-[#C01C83] uppercase tracking-[0.2em] mb-2">{t.cvProfileTitle}</h3>
-                            <p className="text-[9px] leading-relaxed text-gray-400 text-justify outline-none hover:bg-white/10 p-1 -ml-1 rounded-sm flex-1"
+                            <p className="text-[9px] leading-relaxed text-gray-700 text-justify outline-none hover:bg-black/5 p-1 -ml-1 rounded-sm flex-1"
                                 contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'strategic_bio')}>
                                 {profile.strategic_bio}
                             </p>
@@ -95,9 +95,9 @@ export const SpecialistCV: React.FC<SpecialistCVProps> = ({ initialProfile, targ
                             {/* Address/Location */}
                             <div className="flex gap-3">
                                 <div className="mt-0.5 text-[#C01C83]"><MapPin size={14} /></div>
-                                <div className="flex-1 min-w-0 border-b border-gray-700 pb-2">
+                                <div className="flex-1 min-w-0 border-b border-gray-300 pb-2">
                                     <h4 className="text-[10px] font-bold text-[#C01C83] mb-1">{t.cvAddress}</h4>
-                                    <p className="text-[9.5px] text-gray-400 leading-snug outline-none hover:bg-white/10"
+                                    <p className="text-[9.5px] text-gray-700 leading-snug outline-none hover:bg-black/5"
                                         contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'location')}>
                                         {profile.location}
                                     </p>
@@ -108,9 +108,9 @@ export const SpecialistCV: React.FC<SpecialistCVProps> = ({ initialProfile, targ
                             {profile.contact.phone && (
                                 <div className="flex gap-3">
                                     <div className="mt-0.5 text-[#C01C83]"><Phone size={14} /></div>
-                                    <div className="flex-1 min-w-0 border-b border-gray-700 pb-2">
+                                    <div className="flex-1 min-w-0 border-b border-gray-300 pb-2">
                                         <h4 className="text-[10px] font-bold text-[#C01C83] mb-1">{t.cvPhone}</h4>
-                                        <p className="text-[9.5px] text-gray-400 leading-snug outline-none hover:bg-white/10"
+                                        <p className="text-[9.5px] text-gray-700 leading-snug outline-none hover:bg-black/5"
                                             contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'phone')}>
                                             {profile.contact.phone}
                                         </p>
@@ -122,9 +122,9 @@ export const SpecialistCV: React.FC<SpecialistCVProps> = ({ initialProfile, targ
                             {profile.contact.email && (
                                 <div className="flex gap-3">
                                     <div className="mt-0.5 text-[#C01C83]"><Mail size={14} /></div>
-                                    <div className="flex-1 min-w-0 border-b border-gray-700 pb-2">
+                                    <div className="flex-1 min-w-0 border-b border-gray-300 pb-2">
                                         <h4 className="text-[10px] font-bold text-[#C01C83] mb-1">{t.cvEmail}</h4>
-                                        <p className="text-[9.5px] text-gray-400 leading-snug outline-none hover:bg-white/10 break-all"
+                                        <p className="text-[9.5px] text-gray-700 leading-snug outline-none hover:bg-black/5 break-all"
                                             contentEditable suppressContentEditableWarning onBlur={(e) => handleTextEdit(e, 'contact', 'email')}>
                                             {profile.contact.email}
                                         </p>
@@ -135,9 +135,9 @@ export const SpecialistCV: React.FC<SpecialistCVProps> = ({ initialProfile, targ
                             {/* Demographics / Web (Fallback using age/gender to fill space if no linkedin) */}
                             <div className="flex gap-3">
                                 <div className="mt-0.5 text-[#C01C83]"><Globe size={14} /></div>
-                                <div className="flex-1 min-w-0 border-b border-gray-700 pb-2">
+                                <div className="flex-1 min-w-0 border-b border-gray-300 pb-2">
                                     <h4 className="text-[10px] font-bold text-[#C01C83] mb-1">{t.cvDetails}</h4>
-                                    <p className="text-[9.5px] text-gray-400 leading-snug outline-none hover:bg-white/10 break-all">
+                                    <p className="text-[9.5px] text-gray-700 leading-snug outline-none hover:bg-black/5 break-all">
                                         {profile.contact.linkedin || (profile.age ? `${profile.age} yrs | ${profile.gender}` : 'linkedin.com/in/')}
                                     </p>
                                 </div>
